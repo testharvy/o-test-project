@@ -1,0 +1,61 @@
+@import "../../app/variables";
+
+.block{
+  width: 280px;
+  height: 100%;
+  padding: 10px;
+  border-radius: 15px;
+  overflow: hidden;
+  background: $colorSilver;
+  color: $colorBlack;
+  position: relative;
+  padding-bottom: 80px;
+}
+
+
+.img{
+  width: 260px;
+  height: 195px;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.title{
+  @include titleText;
+  height: 44px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.description{
+  @include mainText;
+  max-height: 240px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 8;
+  -webkit-box-orient: vertical;
+}
+.price{
+  @include titleText;
+  height: 44px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+
+@media screen and (max-width: $mobileBreakpoint){
+  .block{
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .block:last-child{
+    margin-bottom: 0;
+  }
+  .img{
+    width: 310px;
+    height: 232px;
+    border-radius: 15px;
+    margin-bottom: 10px;
+  }
+}

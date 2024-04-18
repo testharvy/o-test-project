@@ -1,0 +1,31 @@
+@import "../../app/variables";
+
+.block{
+  @include mainText;
+  border-radius: 15px;
+  padding: 10px;
+  background: $colorSilver;
+  color: $colorBlack;
+  width: 448px;
+}
+
+.block h1,
+.block h2,
+.block h3,
+.block h4,
+.block h5,
+.block h6{
+  @include titleText;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+@media screen and (max-width: $mobileBreakpoint){
+  .block{
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .block:last-child{
+    margin-bottom: 0;
+  }
+}

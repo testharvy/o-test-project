@@ -1,0 +1,41 @@
+@import "../../app/variables";
+
+.bg{
+  background: rgba(0,0,0,0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.popup{
+  position: absolute;
+  margin: auto;
+  padding: 50px 10px;
+  border-radius: 15px;
+  background: $colorWhite;
+  width: 800px;
+  text-align: center;
+}
+.text{
+  @include mainText;
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: $mobileBreakpoint){
+  .popup{
+    position: absolute;
+    margin: auto;
+    padding: 20px 10px;
+    border-radius: 15px;
+    background: $colorWhite;
+    width: 300px;
+    text-align: center;
+  }
+}

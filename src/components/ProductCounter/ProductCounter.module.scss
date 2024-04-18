@@ -1,0 +1,25 @@
+@import "../../app/variables";
+
+.wrapper{
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  height: 70px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.input{
+  width: 100px;
+  background: $colorBlack;
+  color: $colorWhite;
+  padding: 10px;
+  border-radius: 15px;
+  line-height: 50px;
+  box-sizing: border-box;
+  font-size: 36px;
+  text-align: center;
+
+}

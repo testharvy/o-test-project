@@ -1,0 +1,108 @@
+@import "../../app/variables";
+
+.block{
+  width: 708px;
+  padding: 20px;
+  border-radius: 15px;
+  background: $colorSilver;
+  color: $colorBlack;
+  margin: 50px auto;
+}
+.title{
+  @include titleText;
+  margin-bottom: 10px;
+}
+.row{
+  margin-bottom: 10px;
+}
+.row{
+  display: flex;
+  align-items: center;
+  @include mainText;
+}
+.row:hover{
+  background: #D4D4D4;
+}
+
+.itemTitle{
+  width: 520px;
+  padding-right: 20px;
+  overflow: hidden;
+  display: inline-block;
+
+}
+.itemCount{
+  width: 50px;
+  margin-right: 10px;
+}
+.itemPrice{
+  width: 100px;
+}
+.inputWrapper{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.input{
+  width: 400px;
+  background: $colorBlack;
+  color: $colorWhite;
+  padding: 10px;
+  border-radius: 15px;
+  line-height: 50px;
+  box-sizing: border-box;
+  font-size: 36px;
+}
+.submit{
+  background: $colorBlack;
+  border-radius: 15px;
+  cursor: pointer;
+  box-sizing: border-box;
+  border: 1px solid $colorHover;
+  color: $colorWhite;
+  transition: all 0.3s ease;
+  font-size: 36px;
+  line-height: 68px;
+  width: 250px;
+}
+.submit:hover{
+  background: $colorHover;
+  color: $colorWhite;
+  border-color: $colorBlack;
+}
+
+@media screen and (max-width: $mobileBreakpoint){
+  .block{
+    width: $mobileContentWidth;
+    margin-bottom: 20px;
+  }
+  .title{
+    text-align: center;
+  }
+  .inputWrapper{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .itemTitle{
+    width: 200px;
+    padding-right: 20px;
+    overflow: hidden;
+    display: inline-block;
+
+  }
+
+
+  .input{
+    width: 100%;
+    padding: 10px;
+    font-size: 30px;
+    margin-bottom: 10px;
+  }
+  .submit{
+    width: 100%;
+  }
+}

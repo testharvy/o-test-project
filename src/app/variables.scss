@@ -1,0 +1,18 @@
+$colorWhite: #F0F0F0;
+$colorBlack: #222222;
+$colorSilver: #D9D9D9;
+$colorHover: #333333;
+
+
+$desktopContentWidth: 920px;
+$mobileContentWidth: 330px;
+$mobileBreakpoint: 1024px;
+
+@mixin titleText {
+  font-size: 36px;
+  line-height: 43.57px;
+}
+@mixin mainText {
+  font-size: 24px;
+  line-height:  29.05px;
+}

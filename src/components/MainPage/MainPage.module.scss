@@ -1,0 +1,75 @@
+@import "../../app/variables";
+
+.main{
+  background: $colorBlack;
+  color: $colorWhite;
+  padding: 50px 0;
+}
+
+.title{
+  @include titleText;
+  width: $desktopContentWidth;
+  text-align: center;
+  border-radius: 15px;
+  padding: 10px;
+  background: $colorSilver;
+  color: $colorBlack;
+  margin: 0px auto 50px;
+}
+
+.reviews{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: $desktopContentWidth;
+  margin: 0 auto;
+}
+
+.list{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: $desktopContentWidth;
+  margin: 0 auto;
+  align-items: stretch;
+  position: relative;
+}
+.listItem{
+  width: 280px;
+  margin-bottom: 30px;
+}
+
+.loading{
+  @include titleText;
+  text-align: center;
+
+}
+
+
+@media screen and (max-width: $mobileBreakpoint){
+  .title{
+    width: $mobileContentWidth;
+  }
+  .reviews{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: $mobileContentWidth;
+
+  }
+  .list{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: $mobileContentWidth;
+    margin: 0 auto;
+    align-items: stretch;
+  }
+  .listItem{
+    width: 100%;
+    margin-bottom: 30px;
+  }
+}

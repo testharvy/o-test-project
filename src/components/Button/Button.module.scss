@@ -1,0 +1,45 @@
+@import "../../app/variables";
+
+.wrapper{
+    display: inline-block;
+}
+.button{
+    background: $colorBlack;
+    border-radius: 15px;
+    cursor: pointer;
+    box-sizing: border-box;
+    border: 1px solid $colorHover;
+    color: $colorWhite;
+    transition: all 0.3s ease;
+    font-size: 36px;
+    line-height: 68px;
+    width: 100%;
+}
+
+.button:hover{
+    background: $colorHover;
+    color: $colorWhite;
+    border-color: $colorBlack;
+}
+
+.wrapper.-cart{
+    width: 250px;
+}
+
+.wrapper.-buy{
+    width: 100%;
+}
+
+.wrapper.-plus{
+    width: 70px;
+}
+
+.wrapper.-popup{
+    width: 100px;
+}
+
+@media screen and (max-width: $mobileBreakpoint){
+    .wrapper.-cart{
+        width: 100%;
+    }
+}
