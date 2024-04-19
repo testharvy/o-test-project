@@ -5,11 +5,12 @@ import styles from "./ProductCounter.module.scss"
 
 type Props = {
     productId: number
+    quantity: number
     setCartObject: (id: number, quantity: number)=>void,
 }
 
-export default function ProductCounter ({productId, setCartObject=(id,quantity)=>{}}:Props){
-    const [count, setCount] = useState(0)
+export default function ProductCounter ({productId, quantity, setCartObject=(id,quantity)=>{}}:Props){
+    // const [count, setCount] = useState(quantity)
 
     const changeHandler = function (event: React.ChangeEvent<HTMLInputElement>){
         let newCount = parseInt(event.target.value);
@@ -22,32 +23,29 @@ export default function ProductCounter ({productId, setCartObject=(id,quantity)=
         if(newCount>99){
             newCount=99;
         }
-        setCount(newCount);
         setCartObject(productId, newCount);
     }
 
     const clickHandler = function (newCount:number){
-
-        setCount(newCount);
         setCartObject(productId, newCount);
     }
 
     return (
         <div className={styles.wrapper}>
-            { count==0 ?
+            { quantity==0 ?
                 <Button extraClassName={'-buy'} onClick={()=>clickHandler(1)}>Купить</Button>
                 :
                 <>
-                    <Button extraClassName={'-plus'} onClick={()=>clickHandler(count-1)}> - </Button>
+                    <Button extraClassName={'-plus'} onClick={()=>clickHandler(quantity-1)}> - </Button>
                     <input
                         pattern="[0-9]*"
                         onChange={(event)=>changeHandler(event)}
-                        value={count}
+                        value={quantity}
                         className={styles.input}
                         min={0}
                         max={99}
                         type="number"/>
-                    <Button extraClassName={'-plus'} onClick={()=>clickHandler(count+1)}> + </Button>
+                    <Button extraClassName={'-plus'} onClick={()=>clickHandler(quantity+1)}> + </Button>
                 </>
             }
         </div>

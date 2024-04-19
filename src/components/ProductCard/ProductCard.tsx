@@ -6,10 +6,11 @@ import Image from "next/image";
 
 interface Props{
     product: Product,
+    quantity: number,
     setCartObject: (id: number, quantity: number)=>void,
 }
 
-export default function ProductCard ({ product, setCartObject}:Props){
+export default function ProductCard ({ product, quantity, setCartObject}:Props){
     const {image_url, title, description, price} = product;
 
     return (
@@ -27,7 +28,7 @@ export default function ProductCard ({ product, setCartObject}:Props){
             <h4 title={title} className={styles.title}>{title}</h4>
             <div title={description} className={styles.description}>{description}</div>
             <div className={styles.price}>цена {price}₽</div>
-            <ProductCounter productId={product.id} setCartObject={setCartObject}/>
+            <ProductCounter productId={product.id} quantity={quantity} setCartObject={setCartObject}/>
         </div>
     )
 }

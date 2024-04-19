@@ -17,7 +17,13 @@ export async function postOrder(order:Order):Promise<OrderResponse>{
         if(order.cart.find((item) => item.id==1)){
             reject("отсутствуют товарвы");
         }
+
         resolve({success:1});
-    }).catch( error => {return { success:0, error: error}})
+    }).then(res=> {
+        console.log('Заказ:', order)
+        return res
+    }).catch( error => {
+        return { success:0, error: error}
+    })
     return promise;
 }

@@ -9,6 +9,7 @@ import Cart from "@/components/Cart/Cart";
 import Review from "@/components/Review/Review";
 import ProductCard from "@/components/ProductCard/ProductCard";
 import styles from "./MainPage.module.scss";
+import {getCart, getPhone, setCart} from "@/utils/storage";
 
 
 interface Props {
@@ -20,7 +21,6 @@ export default function MainPage ({ reviews, initProducts }:Props){
     const [cartItems, setCartItems] = useState<CartRow[]>([])
     const [products, setProducts] = useState<Product[]>(initProducts.data)
     const [currentPage, setCurrentPage] = useState(1)
-    const [pending, setPending] = useState(false)
     const { ref, inView } = useInView()
     const maxPage = initProducts.pages
 
@@ -31,7 +31,6 @@ export default function MainPage ({ reviews, initProducts }:Props){
             setCurrentPage(newCurrent);
             const newProducts = await getProducts(newCurrent, 6)
             setProducts([...products, ...newProducts.data])
-            setPending(false);
         }
     }
 
@@ -41,30 +40,45 @@ export default function MainPage ({ reviews, initProducts }:Props){
         }
     }, [inView])
 
+    useEffect(() => {
+        const cartData = getCart();
+        setCartItems(cartData);
+    }, []);
+
     const clickHandler = function (id:number, quantity:number){
         const product = products.find((item) => item.id==id)
         if(product){
+            let newCart;
             const indexOfItem = cartItems.findIndex(item => item.id==id);
             if(indexOfItem!=-1){
                 if(quantity>0){
-                    setCartItems([ ...cartItems.slice(0, indexOfItem),
+                    //изменение
+                    newCart = [ ...cartItems.slice(0, indexOfItem),
                         {'id':id, product:product, quantity: quantity},
-                        ...cartItems.slice(indexOfItem+1)])
+                        ...cartItems.slice(indexOfItem+1)]
                 }else{
-                    setCartItems([ ...cartItems.slice(0, indexOfItem),
-                        ...cartItems.slice(indexOfItem+1)])
+                    //удаление
+                    newCart = [...cartItems].filter((row)=> row.id!=id)
                 }
             }else{
-                setCartItems([ ...cartItems, {'id':id, product:product, quantity: quantity}])
+                //добавление нового
+                newCart = [ ...cartItems, {'id':id, product:product, quantity: quantity}]
             }
+            setCartItems(newCart)
+            setCart(newCart)
         }
+
     }
+
+    const productsWitchQuantity = [...products].map((product)=>{
+        const cartRow = cartItems.find((row) => row.id==product.id);
+        const quantity = cartRow ? cartRow.quantity: 0
+        return {...product, quantity:quantity}
+    })
 
     return (
         <main className={styles.main}>
-
             <h1 className={styles.title}>Тестовое задание</h1>
-
             <div className={styles.reviews}>
                 { reviews.map((review, index)=> {
                     return <Review key={index} text={review.text}/>
@@ -73,10 +87,11 @@ export default function MainPage ({ reviews, initProducts }:Props){
 
             <Cart cartItems={cartItems} setCartItems={setCartItems}/>
             <ul className={styles.list}>
-                {products && products.map( product => {
+                {productsWitchQuantity && productsWitchQuantity.map( product => {
                         return <li key={product.id} className={styles.listItem}>
                             <ProductCard
                                 product={product}
+                                quantity={product.quantity}
                                 setCartObject={clickHandler}
                                 />
                         </li>

@@ -38,6 +38,12 @@
 .itemPrice{
   width: 100px;
 }
+.delete{
+  cursor: pointer;
+}
+.delete:hover{
+  color: $colorHover;
+}
 .inputWrapper{
   display: flex;
   flex-direction: row;
@@ -53,6 +59,9 @@
   line-height: 50px;
   box-sizing: border-box;
   font-size: 36px;
+}
+.input:focus{
+  background: $colorHover;
 }
 .submit{
   background: $colorBlack;
